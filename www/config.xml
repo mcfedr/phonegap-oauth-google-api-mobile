@@ -16,9 +16,7 @@
     <author href="http://liquidlabs.ca/" email="feedback@liquidlabs.ca">
         Liquid Labs Inc.
     </author>
-	
-	<gap:plugin name="ChildBrowser" />
-		
+			
 	<icon src="icon.png" />	
 	<icon src="icons/android/ldpi/ic_launcher.png" gap:platform="android" gap:density="ldpi" />
 	<icon src="icons/android/mdpi/ic_launcher.png" gap:platform="android" gap:density="mdpi" />

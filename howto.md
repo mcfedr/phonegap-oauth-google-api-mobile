@@ -9,8 +9,7 @@ You will need following core files for your project.
  * `helper/liquid.helper.oauth.js` (Google oauth2 helper library - depends on multiple files, it's highly recommended that you check inline documentation)
 
 And following library files:
- * `cordova.js` (Cordova core library, required to use `localStorage` and childbrowser plugin)
- * `childbrowser.js` (cordova plugin which allows to open popup browser window without leaving your app)
+ * `cordova.js` (Cordova core library, required to use `localStorage`)
  * `jquery.js` (jquery core library - required for AJAX calls)
 
 ### Optional Files ###

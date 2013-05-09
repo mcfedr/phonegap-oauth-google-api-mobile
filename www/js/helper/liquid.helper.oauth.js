@@ -5,7 +5,6 @@
  * The following files should be included before this file:
  * 
  * @requires cordova.js (Phonegap library)
- * @requires childbrowser.js (Phonegap Childbrowser plugin)
  * @requires jquery.js (jquery library)
  * @requires gapi-client.min.js (google API JS Client)
  * @requires liquid.js (The Base library)
@@ -91,9 +90,9 @@
 			$this.requestStatus = $this.status.NOT_DETERMINED;
 			
 			// Now open new browser
-			window.plugins.childBrowser.showWebPage(authUri, {showLocationBar : true}); 		
-			window.plugins.childBrowser.onClose = $this.onAuthClose;		
-			window.plugins.childBrowser.onLocationChange = $this.onAuthUrlChange;		
+            $this.inAppBrowserWindow = window.open(authUri, '_blank', 'location=yes');
+            $this.inAppBrowserWindow.addEventListener('loadstart', $this.onAuthUrlChange);
+            $this.inAppBrowserWindow.addEventListener('exit', $this.onAuthClose);
 		},
 	
 		/* Auth Window closed */
@@ -120,8 +119,9 @@
 		 * 
 		 * @param {string} uriLocation The URI Location 
 		 */
-		onAuthUrlChange: function(uriLocation) {
-			var $this = helper.oauth;
+		onAuthUrlChange: function(e) {
+			var $this = helper.oauth,
+                uriLocation = e.url;
 			
 			if(uriLocation.indexOf("code=") != -1) {
 				$this.requestStatus = $this.status.SUCCESS;
@@ -129,15 +129,15 @@
 				/* Store the authCode temporarily */
 				$this.authCode = $this.getParameterByName("code", uriLocation);
 				
-				// close the childBrowser
-				window.plugins.childBrowser.close();
+				// close the in app browser window
+				$this.inAppBrowserWindow.close();
 			}
 		    else if(uriLocation.indexOf("error=") != -1) 
 		    {
 		    	$this.requestStatus = $this.status.ERROR;		    	
 		    	$this.errorMessage = $this.getParameterByName("error", uriLocation);
 		    	
-		    	window.plugins.childBrowser.close();
+		    	$this.inAppBrowserWindow.close();
 		    }
 		    else {
 		    	$this.requestStatus = $this.status.NOT_DETERMINED;

@@ -1,8 +1,8 @@
-Implementing OAuth 2.0 with Google API in Phonegap / ChildBrowser
+Implementing OAuth 2.0 with Google API in Phonegap
 ------------------------------------------------------------------
 
- The code demonstrates how to implement OAuth 2.0 with Google API in Phonegap with
- ChildBrowser Plugin. Below are different screenshots of the App. The App authorize 
+ The code demonstrates how to implement OAuth 2.0 with Google API in Phonegap.
+ Below are different screenshots of the App. The App authorize 
  a Google Tasks API using OAuth 2.0 and then it accesses the User's Tasks and displays 
  them in a list view.
 
